@@ -23,7 +23,17 @@ app.use((error, req, res, next) => {
   res.sendStatus(500);
 });
 
-// const connection = mysql.createConnection({
+app.listen(8080);
+
+// // const connection = mysql.createConnection({
+// //   host: "localhost",
+// //   user: "root",
+// //   password: "1234",
+// //   port: 3306,
+// //   database: "gig_time",
+// // });
+
+// var pool = mysql.createPool({
 //   host: "localhost",
 //   user: "root",
 //   password: "1234",
@@ -31,36 +41,26 @@ app.use((error, req, res, next) => {
 //   database: "gig_time",
 // });
 
-var pool = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "1234",
-  port: 3306,
-  database: "gig_time",
-});
+// // connection.connect();
 
-// connection.connect();
+// // connection.query("SELECT * from owners", (error, rows, fields) => {
+// //   console.log("User info is: ", rows);
+// // });
 
-// connection.query("SELECT * from owners", (error, rows, fields) => {
-//   console.log("User info is: ", rows);
+// // connection.end();
+
+// pool.getConnection(function (err, connection) {
+//   if (err) throw err; // not connected!
+
+//   // Use the connection
+//   connection.query("SELECT * FROM owners", function (error, results, fields) {
+//     // When done with the connection, release it.
+//     console.log(results);
+//     connection.release();
+
+//     // Handle error after the release.
+//     if (error) throw error;
+
+//     // Don't use the connection here, it has been returned to the pool.
+//   });
 // });
-
-// connection.end();
-
-pool.getConnection(function (err, connection) {
-  if (err) throw err; // not connected!
-
-  // Use the connection
-  connection.query("SELECT * FROM owners", function (error, results, fields) {
-    // When done with the connection, release it.
-    console.log(results);
-    connection.release();
-
-    // Handle error after the release.
-    if (error) throw error;
-
-    // Don't use the connection here, it has been returned to the pool.
-  });
-});
-
-app.listen(8080);
